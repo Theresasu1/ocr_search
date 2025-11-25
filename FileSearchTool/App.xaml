@@ -1,0 +1,22 @@
+<Application x:Class="FileSearchTool.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:helpers="clr-namespace:FileSearchTool.Helpers"
+             xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- 引入 iNKORE.UI.WPF.Modern 主题资源 -->
+                <ui:ThemeResources RequestedTheme="Light"/>
+                <ui:XamlControlsResources />
+                
+                <ResourceDictionary>
+                    <!-- 全局布尔值到可见性的转换器 -->
+                    <helpers:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+                    <helpers:BooleanToVisibilityInverseConverter x:Key="BooleanToVisibilityInverseConverter"/>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

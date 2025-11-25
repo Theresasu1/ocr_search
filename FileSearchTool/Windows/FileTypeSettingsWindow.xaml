@@ -1,0 +1,170 @@
+<Window x:Class="FileSearchTool.Windows.FileTypeSettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="文件类型设置"
+        Height="520"
+        Width="520"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner">
+    <Grid Margin="25">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" 
+                   Text="文件类型设置" 
+                   FontSize="18" 
+                   FontWeight="Bold" 
+                   Margin="0,0,0,15"/>
+        
+        <!-- 文件类型白名单 -->
+        <TextBlock Grid.Row="1"
+                   Text="请选择要索引的文件类型（扩展名，分号分隔）"
+                   FontSize="13"
+                   Foreground="Gray"
+                   Margin="0,0,0,8"/>
+        <Border Grid.Row="2" 
+                BorderBrush="#E0E0E0" 
+                BorderThickness="1" 
+                CornerRadius="4" 
+                Padding="15" 
+                Margin="0,0,0,15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="ExtensionsTextBox" 
+                         Grid.Column="0" 
+                         Height="100" 
+                         TextWrapping="Wrap" 
+                         AcceptsReturn="True"
+                         VerticalScrollBarVisibility="Auto"
+                         Background="#FFFFFF"
+                         BorderBrush="#E0E0E0"
+                         BorderThickness="1"/>
+                <StackPanel Grid.Column="1" Orientation="Vertical" Margin="12,0,0,0">
+                    <Button x:Name="LoadDefaultButton" 
+                            Content="加载默认" 
+                            Width="90" 
+                            Height="32"
+                            Margin="0,0,0,8" 
+                            Click="LoadDefaultButton_Click"
+                            FontSize="13"/>
+                    <CheckBox x:Name="IndexAllFilesCheckBox" 
+                              Content="索引所有文件&#x0a;（忽略白名单）"
+                              VerticalAlignment="Top"
+                              FontSize="12"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        
+        <!-- 文件大小限制 -->
+        <Border Grid.Row="3" 
+                BorderBrush="#E0E0E0" 
+                BorderThickness="1" 
+                CornerRadius="4" 
+                Padding="15" 
+                Margin="0,0,0,15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" 
+                           Text="最大全文提取文件大小（MB）：" 
+                           VerticalAlignment="Center"
+                           FontSize="13"/>
+                <TextBox x:Name="MaxFileSizeTextBox" 
+                         Grid.Column="1" 
+                         Width="100" 
+                         HorizontalAlignment="Left"
+                         Margin="8,0,0,0"
+                         VerticalContentAlignment="Center"
+                         Height="32"
+                         Background="#FFFFFF"
+                         BorderBrush="#E0E0E0"
+                         BorderThickness="1"/>
+            </Grid>
+        </Border>
+        
+        <!-- 排除指定目录管理 -->
+        <Border Grid.Row="4" 
+                BorderBrush="#E0E0E0" 
+                BorderThickness="1" 
+                CornerRadius="4" 
+                Padding="15" 
+                Margin="0,0,0,15">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="120"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" 
+                           Text="排除指定目录（可逐条添加，或粘贴分号分隔列表）" 
+                           FontSize="13"
+                           Foreground="Gray"
+                           Margin="0,0,0,8"/>
+                <ListBox x:Name="ExcludedSubdirsListBox" 
+                         Grid.Row="1" 
+                         BorderBrush="#CCCCCC" 
+                         BorderThickness="1"
+                         Background="#FFFFFF"/>
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,8,0,0">
+                    <TextBox x:Name="NewExcludedSubdirTextBox" 
+                             Width="180" 
+                             Margin="0,0,10,0" 
+                             Height="32" 
+                             VerticalContentAlignment="Center"
+                             Background="#FFFFFF"
+                             BorderBrush="#E0E0E0"
+                             BorderThickness="1"/>
+                    <Button Content="浏览" 
+                            Width="75" 
+                            Height="32" 
+                            Margin="0,0,10,0" 
+                            Click="BrowseExcludedDirButton_Click"
+                            FontSize="13"/>
+                    <Button Content="添加" 
+                            Width="75" 
+                            Height="32" 
+                            Margin="0,0,10,0" 
+                            Click="AddExcludedSubdirButton_Click"
+                            FontSize="13"/>
+                    <Button Content="删除选中" 
+                            Width="100" 
+                            Height="32" 
+                            Click="RemoveExcludedSubdirButton_Click"
+                            FontSize="13"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        
+        <!-- 按钮 -->
+        <StackPanel Grid.Row="5" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right" 
+                    Margin="0,5,0,0">
+            <Button x:Name="CancelButton" 
+                    Content="取消" 
+                    Width="80" 
+                    Height="32" 
+                    Margin="0,0,10,0" 
+                    Click="CancelButton_Click"
+                    FontSize="13"/>
+            <Button x:Name="SaveButton" 
+                    Content="保存" 
+                    Width="80" 
+                    Height="32" 
+                    Click="SaveButton_Click"
+                    FontSize="13"/>
+        </StackPanel>
+    </Grid>
+</Window>

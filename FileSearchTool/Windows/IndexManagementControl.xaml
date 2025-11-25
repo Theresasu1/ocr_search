@@ -1,0 +1,102 @@
+<UserControl x:Class="FileSearchTool.Windows.IndexManagementControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.Resources>
+        <Style x:Key="DeleteButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#D32F2F"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E53935"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#C62828"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#CCCCCC"/>
+                    <Setter Property="Foreground" Value="#666666"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel Margin="25">
+        <!-- 说明文本 -->
+        <TextBlock Text="索引管理" 
+                   FontSize="18" 
+                   FontWeight="Bold" 
+                   Margin="0,0,0,8"/>
+        
+        <TextBlock Text="删除索引将清空所有已建立的索引数据。删除后，您需要重新建立索引才能进行搜索。" 
+                   TextWrapping="Wrap" 
+                   Foreground="Gray" 
+                   FontSize="13"
+                   Margin="0,0,0,20"/>
+
+        <!-- 索引信息 -->
+        <Border BorderBrush="#E0E0E0" 
+                BorderThickness="1" 
+                Padding="20" 
+                CornerRadius="4"
+                Background="#FFFFFF"
+                Margin="0,0,0,20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" 
+                           Text="数据库位置：" 
+                           VerticalAlignment="Center"
+                           FontSize="13"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" 
+                           x:Name="DatabasePathTextBlock" 
+                           Text="加载中..." 
+                           FontWeight="Bold"
+                           FontSize="13"
+                           VerticalAlignment="Center"
+                           TextTrimming="CharacterEllipsis"
+                           MaxWidth="400"
+                           ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+            </Grid>
+        </Border>
+
+        <!-- 按钮 -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="SetPathButton"
+                    Content="设置存储位置" 
+                    Width="120" 
+                    Height="32"
+                    FontSize="13"
+                    Margin="0,0,10,0"
+                    Click="SetPath_Click"/>
+            <Button x:Name="DeleteButton"
+                    Content="删除所有索引" 
+                    Width="120" 
+                    Height="32"
+                    FontSize="13"
+                    Style="{StaticResource DeleteButtonStyle}"
+                    Click="DeleteIndex_Click"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

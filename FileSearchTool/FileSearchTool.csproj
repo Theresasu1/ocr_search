@@ -1,0 +1,81 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>FileSearchTool</AssemblyName>
+    <AssemblyTitle>文件内容索引与搜索工具</AssemblyTitle>
+    <Product>FileSearchTool</Product>
+    <Version>1.0.0</Version>
+    <ApplicationIcon>..\icon\screen2.ico</ApplicationIcon>
+    
+    <!-- 发布优化配置 -->
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishTrimmed>false</PublishTrimmed>
+    <PublishReadyToRun>false</PublishReadyToRun>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <DebuggerSupport>false</DebuggerSupport>
+    <EnableUnsafeBinaryFormatterSerialization>false</EnableUnsafeBinaryFormatterSerialization>
+    <HttpActivityPropagationSupport>false</HttpActivityPropagationSupport>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <UseSystemResourceKeys>true</UseSystemResourceKeys>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="AntdUITest\**" />
+    <EmbeddedResource Remove="AntdUITest\**" />
+    <None Remove="AntdUITest\**" />
+    <Page Remove="AntdUITest\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="serach.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\icon\serach.png" Link="serach.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\icon\screen2.ico" Link="screen2.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\*.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AntdUI" Version="2.2.0" />
+    <PackageReference Include="ClosedXML" Version="0.102.1" />
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.20.0" />
+    <PackageReference Include="FreeSpire.Doc" Version="12.2.0" />
+    <PackageReference Include="iNKORE.UI.WPF.Modern" Version="0.10.2.1" />
+    <!-- PackageReference Include="Microsoft.Windows.SDK.Contracts" Version="10.0.22621.755" / -->
+    <PackageReference Include="PdfPig" Version="0.1.11" />
+    <!-- 移除 System.Data.SQLite.Core，避免与 Microsoft.Data.Sqlite 冲突 -->
+    <!-- <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" /> -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
+    <PackageReference Include="NPOI" Version="2.6.2" />
+    <PackageReference Include="FreeSpire.Presentation" Version="9.3.0" />
+    <PackageReference Include="Docnet.Core" Version="2.6.0" />
+    <PackageReference Include="Tesseract" Version="5.2.0" />
+    <PackageReference Include="Tesseract.Drawing" Version="5.2.0" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+    <!-- 显式引入 SQLitePCLRaw.bundle_e_sqlite3，确保加载带 FTS5 的原生 SQLite -->
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.2" />
+  </ItemGroup>
+
+</Project>
